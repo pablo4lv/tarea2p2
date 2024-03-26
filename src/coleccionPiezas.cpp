@@ -1,11 +1,13 @@
 #include "../include/coleccionPiezas.h"
 
 struct rep_coleccionpiezas{
-    
+    TPieza pieza;
+    TColeccionPiezas sig;
 };
 
-TColeccionPiezas crearColeccionPiezasVacia(){ 
-    return NULL; 
+TColeccionPiezas crearColeccionPiezasVacia(){
+    TColeccionPiezas coleccionPiezas = NULL;
+    return coleccionPiezas; 
 }
 
 void insertarPiezaColeccionPiezas(TColeccionPiezas &coleccionPiezas, TPieza pieza){
