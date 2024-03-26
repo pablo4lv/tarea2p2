@@ -6,7 +6,6 @@ struct rep_coleccionpiezas{
 };
 
 TColeccionPiezas crearColeccionPiezasVacia(){
-    // TColeccionPiezas coleccionPiezas = NULL;
     return NULL; 
 }
 
