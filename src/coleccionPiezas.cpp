@@ -6,7 +6,8 @@ struct rep_coleccionpiezas{
 };
 
 TColeccionPiezas crearColeccionPiezasVacia(){
-    return NULL; 
+    TColeccionPiezas coleccionPiezas = NULL;
+    return coleccionPiezas; 
 }
 
 void insertarPiezaColeccionPiezas(TColeccionPiezas &coleccionPiezas, TPieza pieza){
