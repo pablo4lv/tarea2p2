@@ -33,10 +33,12 @@ void insertarPiezaColeccionPiezas(TColeccionPiezas &coleccionPiezas, TPieza piez
 }
 
 void imprimirColeccionPiezas(TColeccionPiezas coleccionPiezas){
-   while (coleccionPiezas->sig != NULL){
-    imprimirTPieza(coleccionPiezas->pieza);
-    coleccionPiezas = coleccionPiezas->sig;
-   }
+    if (coleccionPiezas!= NULL){
+        while (coleccionPiezas->sig != NULL){
+            imprimirTPieza(coleccionPiezas->pieza);
+            coleccionPiezas = coleccionPiezas->sig;
+        }
+    }
 }
 
 bool esVaciaColeccionPiezas(TColeccionPiezas piezas){
