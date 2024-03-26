@@ -6,7 +6,7 @@ struct rep_coleccionpiezas{
 };
 
 TColeccionPiezas crearColeccionPiezasVacia(){
-    return nullptr; 
+    return nullptr;
 }
 
 void insertarPiezaColeccionPiezas(TColeccionPiezas &coleccionPiezas, TPieza pieza){
@@ -59,6 +59,7 @@ void liberarColeccionPiezas(TColeccionPiezas &coleccionPiezas){
         TColeccionPiezas aux = coleccionPiezas->sig;
         while (aux != NULL){
             liberarTPieza(coleccionPiezas->pieza);
+            coleccionPiezas->sig = NULL;
             delete coleccionPiezas;
             coleccionPiezas = aux;
             aux = aux->sig ;
