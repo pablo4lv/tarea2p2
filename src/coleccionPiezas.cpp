@@ -13,7 +13,7 @@ TColeccionPiezas crearColeccionPiezasVacia(){
 void insertarPiezaColeccionPiezas(TColeccionPiezas &coleccionPiezas, TPieza pieza){
     TColeccionPiezas nuevo = new rep_coleccionpiezas;
 
-    if(coleccionPiezas = NULL){
+    if(coleccionPiezas == NULL){
         nuevo->pieza = pieza;
         nuevo->sig = NULL;
         coleccionPiezas = nuevo;
