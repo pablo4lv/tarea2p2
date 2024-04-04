@@ -26,7 +26,7 @@ void insertarPiezaColeccionPiezas(TColeccionPiezas &coleccionPiezas, TPieza piez
         while ((aux->sig != NULL) && idTPieza(aux->sig->pieza) < id){
             aux = aux->sig;
         }
-        // nuevo->pieza = pieza; ¿?
+        nuevo->pieza = pieza;
         nuevo->sig = aux->sig;
         aux->sig = nuevo;
     }
