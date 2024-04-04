@@ -57,8 +57,9 @@ void removerPiezaColeccionPiezas(TColeccionPiezas &coleccionPiezas, int idPieza)
 
 void liberarColeccionPiezas(TColeccionPiezas &coleccionPiezas){
     if (coleccionPiezas != NULL){
-        TColeccionPiezas aux = coleccionPiezas;
+        TColeccionPiezas aux;
         while (coleccionPiezas != NULL){
+            aux = coleccionPiezas;
             coleccionPiezas = coleccionPiezas->sig;
             liberarTPieza(aux->pieza);
             delete aux;
