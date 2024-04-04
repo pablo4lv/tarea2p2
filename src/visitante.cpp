@@ -17,19 +17,19 @@ TVisitante crearTVisitante(int id, const char nombre[MAX_NOMBRE], const char ape
 }
 
 void nombreTVisitante(TVisitante visitante, char nombre[MAX_NOMBRE]){
-
+    strcpy(nombre, visitante->nombre);
 }
 
 void apellidoTVisitante(TVisitante visitante, char apellido[MAX_APELLIDO]){
-
+    strcpy(apellido, visitante->apellido);
 }
 
 int idTVisitante(TVisitante visitante){
-    return 0;
+    return visitante->id;
 }
 
 int edadTVisitante(TVisitante visitante){
-    return 0;
+    return visitante->edad;
 }
 
 void liberarTVisitante(TVisitante &visitante){
@@ -38,7 +38,12 @@ void liberarTVisitante(TVisitante &visitante){
 }
 
 TVisitante copiarTVisitante(TVisitante visitante){
-    return NULL;
+    TVisitante copia = new rep_visitante;
+    copia->id = visitante->id;
+    nombreTVisitante(visitante, copia->nombre);
+    apellidoTVisitante(visitante, copia->apellido);
+    copia->edad = visitante->edad;
+    return copia;
 }
 
 void imprimirTVisitante(TVisitante visitante){
