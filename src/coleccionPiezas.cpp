@@ -6,7 +6,7 @@ struct rep_coleccionpiezas{
 };
 
 TColeccionPiezas crearColeccionPiezasVacia(){
-    return nullptr;
+    return NULL;
 }
 
 void insertarPiezaColeccionPiezas(TColeccionPiezas &coleccionPiezas, TPieza pieza){
@@ -19,13 +19,14 @@ void insertarPiezaColeccionPiezas(TColeccionPiezas &coleccionPiezas, TPieza piez
     }else if(idTPieza(pieza) < idTPieza(coleccionPiezas->pieza)){
         nuevo->pieza = pieza;
         nuevo->sig = coleccionPiezas;
-        coleccionPiezas = nuevo;        
+        coleccionPiezas = nuevo;
     }else{
         TColeccionPiezas aux = coleccionPiezas;
         int id = idTPieza(pieza);
         while ((aux->sig != NULL) && idTPieza(aux->sig->pieza) < id){
             aux = aux->sig;
         }
+        // nuevo->pieza = pieza; ¿?
         nuevo->sig = aux->sig;
         aux->sig = nuevo;
     }
