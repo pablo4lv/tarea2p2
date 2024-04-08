@@ -29,10 +29,18 @@ void insertarTVisitanteTGrupoABB(TGrupoABB &grupoABB, TVisitante visitante){
 }
 
 void imprimirTGrupoABB(TGrupoABB grupoABB){
+    // if (grupoABB != NULL){
+    //     imprimirTGrupoABB(grupoABB->izq);
+    //     imprimirTVisitante(grupoABB->visitante);
+    //     imprimirTGrupoABB(grupoABB->der);
+    // }
     if (grupoABB != NULL){
-        imprimirTGrupoABB(grupoABB->izq);
-        imprimirTVisitante(grupoABB->visitante);
-        imprimirTGrupoABB(grupoABB->der);
+        if (grupoABB->izq == NULL && grupoABB->der == NULL){
+            imprimirTVisitante(grupoABB->visitante);
+        }else{
+            imprimirTGrupoABB(grupoABB->izq);
+            imprimirTGrupoABB(grupoABB->der);
+        }
     }
 }
 
