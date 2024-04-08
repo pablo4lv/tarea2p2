@@ -67,11 +67,13 @@ void liberarNodo(TGrupoABB &grupoABB){
 }
 
 void liberarTGrupoABB(TGrupoABB &grupoABB){
-    if (grupoABB->izq == NULL && grupoABB->der == NULL){
-        liberarNodo(grupoABB);
-    } else {
-        liberarTGrupoABB(grupoABB->izq);
-        liberarTGrupoABB(grupoABB->der);
+    if (grupoABB != NULL){
+        if (grupoABB->izq == NULL && grupoABB->der == NULL){
+            liberarNodo(grupoABB);
+        } else {
+            liberarTGrupoABB(grupoABB->izq);
+            liberarTGrupoABB(grupoABB->der);
+        }
     }
 }
 
