@@ -39,6 +39,7 @@ void imprimirTGrupoABB(TGrupoABB grupoABB){
             imprimirTVisitante(grupoABB->visitante);
         }else{
             imprimirTGrupoABB(grupoABB->izq);
+            imprimirTVisitante(grupoABB->visitante);
             imprimirTGrupoABB(grupoABB->der);
         }
     }
