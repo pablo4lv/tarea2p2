@@ -72,10 +72,12 @@ void removerTVisitanteTGrupoABB(TGrupoABB &grupoABB, int idVisitante){
         if (grupoABB->der == NULL){
             TGrupoABB aux = grupoABB;
             grupoABB = grupoABB->izq;
+            liberarTGrupoABB(aux);
             delete aux;
         } else if(grupoABB->izq == NULL){
             TGrupoABB aux = grupoABB;
             grupoABB = grupoABB->der;
+            liberarTGrupoABB(aux);
             delete aux;
         } else {
             // TVisitante maxIzq = maxIdTVisitanteTGrupoABB(grupoABB->izq);
