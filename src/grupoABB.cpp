@@ -173,5 +173,6 @@ TVisitante obtenerNesimoVisitanteTGrupoABB(TGrupoABB grupoABB, int n){
         i++;
     }
     TVisitante salida = copiarTVisitante(plano->visitante);
+    liberarTGrupoABB(plano);
     return salida;
 }
