@@ -80,7 +80,6 @@ void removerTVisitanteTGrupoABB(TGrupoABB &grupoABB, int idVisitante){
             liberarTVisitante(aux->visitante);
             delete aux;
         } else {
-            // TVisitante maxIzq = maxIdTVisitanteTGrupoABB(grupoABB->izq);
             TGrupoABB maxIzq = grupoABB->izq;
             while (maxIzq->der != NULL) {maxIzq = maxIzq->der;}
             //liberar grupoABB->visitante?
@@ -152,12 +151,23 @@ TVisitante maxIdTVisitanteTGrupoABB(TGrupoABB grupoABB){
 }
 
 //
-TVisitante Aplanar(TGrupoABB grupoABB, TGrupoABB grupo2){
-    return NULL;
+TGrupoABB Aplanar(TGrupoABB grupoABB, TGrupoABB grupo2){
+    if (grupoABB != NULL){
+        if (grupoABB->izq == NULL && grupoABB->der == NULL){
+            insertarTVisitanteTGrupoABB(grupo2,grupoABB->visitante);
+        }else{
+            Aplanar(grupoABB->izq,grupo2);
+            insertarTVisitanteTGrupoABB(grupo2,grupoABB->visitante);
+            Aplanar(grupoABB->der,grupo2);
+        }
+    }
+    return grupo2;
 }
 
 TVisitante obtenerNesimoVisitanteTGrupoABB(TGrupoABB grupoABB, int n){
-    // TGrupoABB grupo2 = NULL;
-    return NULL;
+    TGrupoABB plano = Aplanar(grupoABB,plano);
+    while (int i=0 < n){
+        grupoABB = grupoABB->der;
+    }
+    return grupoABB->visitante;
 }
-
