@@ -172,5 +172,5 @@ TVisitante obtenerNesimoVisitanteTGrupoABB(TGrupoABB grupoABB, int n){
         plano = plano->der;
         i++;
     }
-    return grupoABB->visitante;
+    return plano->visitante;
 }
