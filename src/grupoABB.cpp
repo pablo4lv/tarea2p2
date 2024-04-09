@@ -165,9 +165,11 @@ TGrupoABB Aplanar(TGrupoABB grupoABB, TGrupoABB grupo2){
 }
 
 TVisitante obtenerNesimoVisitanteTGrupoABB(TGrupoABB grupoABB, int n){
-    TGrupoABB plano = Aplanar(grupoABB,plano);
+    TGrupoABB plano;
+    Aplanar(grupoABB,plano);
     while (int i=0 < n){
         grupoABB = grupoABB->der;
+        i++;
     }
     return grupoABB->visitante;
 }
