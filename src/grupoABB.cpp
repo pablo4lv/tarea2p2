@@ -146,6 +146,7 @@ TVisitante maxIdTVisitanteTGrupoABB(TGrupoABB grupoABB){
 
 //
 TVisitante Aplanar(TGrupoABB grupoABB, TGrupoABB grupo2){
+    return NULL;
 }
 
 TVisitante obtenerNesimoVisitanteTGrupoABB(TGrupoABB grupoABB, int n){
