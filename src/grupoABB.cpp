@@ -96,6 +96,8 @@ int sumaEdades(TGrupoABB grupoABB){
 float edadPromedioTGrupoABB(TGrupoABB grupoABB) {
     if (grupoABB != NULL){
         return sumaEdades(grupoABB)/cantidadVisitantesTGrupoABB(grupoABB);
+    }else {
+        return 0;
     }
 }
 
