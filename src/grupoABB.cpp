@@ -83,6 +83,7 @@ void liberarTGrupoABB(TGrupoABB &grupoABB){
         } else {
             liberarTGrupoABB(grupoABB->izq);
             liberarTGrupoABB(grupoABB->der);
+            liberarNodo(grupoABB);
         }
     }
 }
