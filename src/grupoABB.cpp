@@ -30,11 +30,6 @@ void insertarTVisitanteTGrupoABB(TGrupoABB &grupoABB, TVisitante visitante){
 }
 
 void imprimirTGrupoABB(TGrupoABB grupoABB){
-    // if (grupoABB != NULL){
-    //     imprimirTGrupoABB(grupoABB->izq);
-    //     imprimirTVisitante(grupoABB->visitante);
-    //     imprimirTGrupoABB(grupoABB->der);
-    // }
     if (grupoABB != NULL){
         if (grupoABB->izq == NULL && grupoABB->der == NULL){
             imprimirTVisitante(grupoABB->visitante);
@@ -47,11 +42,25 @@ void imprimirTGrupoABB(TGrupoABB grupoABB){
 }
 
 bool existeTVisitanteTGrupoABB(TGrupoABB grupoABB, int idVisitante){
-    return false;
+    while (grupoABB != NULL && idTVisitante(grupoABB->visitante) != idVisitante){
+        if (idTVisitante(grupoABB->visitante) > idVisitante){
+            grupoABB = grupoABB->izq;
+        } else {
+            grupoABB = grupoABB->der;
+        }
+    }
+    return idTVisitante(grupoABB->visitante) != idVisitante;
 }
 
 TVisitante obtenerTVisitanteTGrupoABB(TGrupoABB grupoABB, int idVisitante){
-    return NULL;
+    while (grupoABB != NULL && idTVisitante(grupoABB->visitante) != idVisitante){
+        if (idTVisitante(grupoABB->visitante) > idVisitante){
+            grupoABB = grupoABB->izq;
+        } else {
+            grupoABB = grupoABB->der;
+        }
+    }
+    return grupoABB->visitante;
 }
 
 void removerTVisitanteTGrupoABB(TGrupoABB &grupoABB, int idVisitante){
@@ -59,6 +68,9 @@ void removerTVisitanteTGrupoABB(TGrupoABB &grupoABB, int idVisitante){
 }
 
 nat alturaTGrupoABB(TGrupoABB grupoABB) {
+    if (grupoABB != NULL){
+        return (1 + (alturaTGrupoABB(grupoABB->izq) > alturaTGrupoABB(grupoABB->der)) ? alturaTGrupoABB(grupoABB->izq) : alturaTGrupoABB(grupoABB->der));
+    } else
     return 0;
 }
 
