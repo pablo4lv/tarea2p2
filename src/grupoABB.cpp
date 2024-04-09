@@ -76,11 +76,19 @@ nat alturaTGrupoABB(TGrupoABB grupoABB) {
 }
 
 int cantidadVisitantesTGrupoABB(TGrupoABB grupoABB){
-    return 0;
+    if (grupoABB == NULL){
+        return 0;
+    } else {
+        return 1 + (cantidadVisitantesTGrupoABB(grupoABB->izq) + cantidadVisitantesTGrupoABB(grupoABB->der));
+    }
 }
 
 float edadPromedioTGrupoABB(TGrupoABB grupoABB) {
-    return 0.;
+    if (grupoABB->izq == NULL && grupoABB->der == NULL){
+        return edadTVisitante(grupoABB->visitante)/cantidadVisitantesTGrupoABB(grupoABB);
+    } else {
+        return (edadPromedioTGrupoABB(grupoABB->izq) + edadPromedioTGrupoABB(grupoABB->der) + edadTVisitante(grupoABB->visitante))/cantidadVisitantesTGrupoABB(grupoABB);
+    }
 }
 
 void liberarNodo(TGrupoABB &grupoABB){
@@ -102,7 +110,10 @@ void liberarTGrupoABB(TGrupoABB &grupoABB){
 }
 
 TVisitante maxIdTVisitanteTGrupoABB(TGrupoABB grupoABB){
-    return NULL;
+    while (grupoABB->der != NULL){
+        grupoABB = grupoABB->der;
+    }
+    return grupoABB->visitante;
 }
 
 TVisitante obtenerNesimoVisitanteTGrupoABB(TGrupoABB grupoABB, int n){
