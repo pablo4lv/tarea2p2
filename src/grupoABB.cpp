@@ -61,28 +61,30 @@ TVisitante obtenerTVisitanteTGrupoABB(TGrupoABB grupoABB, int idVisitante){
 }
 
 void removerTVisitanteTGrupoABB(TGrupoABB &grupoABB, int idVisitante){
-    if (grupoABB != NULL){
-        if (idTVisitante(grupoABB->visitante) > idVisitante){
-            removerTVisitanteTGrupoABB(grupoABB->izq,idVisitante);
-        } else if (idTVisitante(grupoABB->visitante) < idVisitante) {
-            removerTVisitanteTGrupoABB(grupoABB->der,idVisitante);
+    if (grupoABB == NULL){
+        return;
+    }
+    if (idTVisitante(grupoABB->visitante) > idVisitante){
+        removerTVisitanteTGrupoABB(grupoABB->izq,idVisitante);
+    } else if (idTVisitante(grupoABB->visitante) < idVisitante) {
+        removerTVisitanteTGrupoABB(grupoABB->der,idVisitante);
+    } else {
+        if (grupoABB->der == NULL){
+            TGrupoABB aux = grupoABB;
+            grupoABB = grupoABB->izq;
+            delete aux;
+        } else if(grupoABB->izq == NULL){
+            TGrupoABB aux = grupoABB;
+            grupoABB = grupoABB->der;
+            delete aux;
         } else {
-            if (grupoABB->der == NULL){
-                TGrupoABB aux = grupoABB;
-                grupoABB = grupoABB->izq;
-                delete aux;
-            } else if(grupoABB->izq == NULL){
-                TGrupoABB aux = grupoABB;
-                grupoABB = grupoABB->der;
-                delete aux;
-            } else {
-                TVisitante maxDer = maxIdTVisitanteTGrupoABB(grupoABB->izq);
-                grupoABB->visitante = maxDer;
-                removerTVisitanteTGrupoABB(grupoABB->izq, idTVisitante(maxDer));
-            }
+            // TVisitante maxIzq = maxIdTVisitanteTGrupoABB(grupoABB->izq);
+            TGrupoABB maxIzq = grupoABB->izq;
+            while (maxIzq->der != NULL) {maxIzq = maxIzq->der;}
+            grupoABB->visitante = maxIzq->visitante;
+            removerTVisitanteTGrupoABB(grupoABB->izq, idTVisitante(maxIzq->visitante));
         }
     }
-
 }
 
 nat alturaTGrupoABB(TGrupoABB grupoABB) {
