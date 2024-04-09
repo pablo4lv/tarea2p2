@@ -84,8 +84,8 @@ int cantidadVisitantesTGrupoABB(TGrupoABB grupoABB){
 }
 
 float edadPromedioTGrupoABB(TGrupoABB grupoABB) {
-    if (grupoABB->izq == NULL && grupoABB->der == NULL){
-        return edadTVisitante(grupoABB->visitante)/cantidadVisitantesTGrupoABB(grupoABB);
+    if (grupoABB == NULL){
+        return 0;
     } else {
         return (edadPromedioTGrupoABB(grupoABB->izq) + edadPromedioTGrupoABB(grupoABB->der) + edadTVisitante(grupoABB->visitante))/cantidadVisitantesTGrupoABB(grupoABB);
     }
