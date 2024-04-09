@@ -49,7 +49,7 @@ bool existeTVisitanteTGrupoABB(TGrupoABB grupoABB, int idVisitante){
             grupoABB = grupoABB->der;
         }
     }
-    return (grupoABB != NULL && idTVisitante(grupoABB->visitante) != idVisitante);
+    return (grupoABB != NULL && idTVisitante(grupoABB->visitante) == idVisitante);
 }
 
 TVisitante obtenerTVisitanteTGrupoABB(TGrupoABB grupoABB, int idVisitante){
