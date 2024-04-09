@@ -11,9 +11,6 @@ TGrupoABB crearTGrupoABBVacio(){
 }
 
 void insertarTVisitanteTGrupoABB(TGrupoABB &grupoABB, TVisitante visitante){
-    // if (!existeTVisitanteTGrupoABB(grupoABB, idTVisitante(visitante))){
-
-    // }
     if (grupoABB == NULL){
         TGrupoABB nuevo = new rep_grupoABB;
         nuevo->visitante = visitante;
@@ -64,7 +61,28 @@ TVisitante obtenerTVisitanteTGrupoABB(TGrupoABB grupoABB, int idVisitante){
 }
 
 void removerTVisitanteTGrupoABB(TGrupoABB &grupoABB, int idVisitante){
-    
+    if (grupoABB != NULL){
+        if (idTVisitante(grupoABB->visitante) > idVisitante){
+            removerTVisitanteTGrupoABB(grupoABB->izq,idVisitante);
+        } else if (idTVisitante(grupoABB->visitante) < idVisitante) {
+            removerTVisitanteTGrupoABB(grupoABB->der,idVisitante);
+        } else {
+            if (grupoABB->der == NULL){
+                TGrupoABB aux = grupoABB;
+                grupoABB = grupoABB->izq;
+                delete aux;
+            } else if(grupoABB->izq == NULL){
+                TGrupoABB aux = grupoABB;
+                grupoABB = grupoABB->der;
+                delete aux;
+            } else {
+                TVisitante maxDer = maxIdTVisitanteTGrupoABB(grupoABB->izq);
+                grupoABB->visitante = maxDer;
+                removerTVisitanteTGrupoABB(grupoABB->izq, idTVisitante(maxDer));
+            }
+        }
+    }
+
 }
 
 nat alturaTGrupoABB(TGrupoABB grupoABB) {
@@ -83,7 +101,7 @@ int cantidadVisitantesTGrupoABB(TGrupoABB grupoABB){
     }
 }
 
-//
+//aux
 int sumaEdades(TGrupoABB grupoABB){
     if (grupoABB == NULL){
         return 0;
@@ -126,7 +144,12 @@ TVisitante maxIdTVisitanteTGrupoABB(TGrupoABB grupoABB){
     return grupoABB->visitante;
 }
 
+//
+TVisitante Aplanar(TGrupoABB grupoABB, TGrupoABB grupo2){
+}
+
 TVisitante obtenerNesimoVisitanteTGrupoABB(TGrupoABB grupoABB, int n){
+    TGrupoABB grupo2 = NULL;
     return NULL;
 }
 
