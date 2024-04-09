@@ -69,7 +69,7 @@ void removerTVisitanteTGrupoABB(TGrupoABB &grupoABB, int idVisitante){
 
 nat alturaTGrupoABB(TGrupoABB grupoABB) {
     if (grupoABB != NULL){
-        return (1 + (alturaTGrupoABB(grupoABB->izq) > alturaTGrupoABB(grupoABB->der)) ? alturaTGrupoABB(grupoABB->izq) : alturaTGrupoABB(grupoABB->der));
+        return 1 + ((alturaTGrupoABB(grupoABB->izq) > alturaTGrupoABB(grupoABB->der)) ? alturaTGrupoABB(grupoABB->izq) : alturaTGrupoABB(grupoABB->der));
     } else {
         return 0;
     }
