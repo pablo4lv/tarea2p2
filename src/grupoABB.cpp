@@ -151,7 +151,7 @@ TVisitante maxIdTVisitanteTGrupoABB(TGrupoABB grupoABB){
 }
 
 //
-TGrupoABB Aplanar(TGrupoABB grupoABB, TGrupoABB grupo2){
+TGrupoABB Aplanar(TGrupoABB grupoABB, TGrupoABB &grupo2){
     if (grupoABB != NULL){
         if (grupoABB->izq == NULL && grupoABB->der == NULL){
             insertarTVisitanteTGrupoABB(grupo2,grupoABB->visitante);
@@ -167,8 +167,9 @@ TGrupoABB Aplanar(TGrupoABB grupoABB, TGrupoABB grupo2){
 TVisitante obtenerNesimoVisitanteTGrupoABB(TGrupoABB grupoABB, int n){
     TGrupoABB plano = NULL;
     Aplanar(grupoABB,plano);
-    while (int i=0 < n){
-        grupoABB = grupoABB->der;
+    int i = 1;
+    while (i < n){
+        plano = plano->der;
         i++;
     }
     return grupoABB->visitante;
