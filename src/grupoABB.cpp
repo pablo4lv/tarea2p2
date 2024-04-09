@@ -94,7 +94,7 @@ int sumaEdades(TGrupoABB grupoABB){
 //
 
 float edadPromedioTGrupoABB(TGrupoABB grupoABB) {
-    sumaEdades(grupoABB)/cantidadVisitantesTGrupoABB(grupoABB);
+    return sumaEdades(grupoABB)/cantidadVisitantesTGrupoABB(grupoABB);
 }
 
 void liberarNodo(TGrupoABB &grupoABB){
