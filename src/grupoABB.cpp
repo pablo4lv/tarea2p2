@@ -87,7 +87,7 @@ float edadPromedioTGrupoABB(TGrupoABB grupoABB) {
     if (grupoABB == NULL){
         return 0;
     } else {
-        return (edadPromedioTGrupoABB(grupoABB->izq) + edadPromedioTGrupoABB(grupoABB->der) + edadTVisitante(grupoABB->visitante))/cantidadVisitantesTGrupoABB(grupoABB);
+        return (edadPromedioTGrupoABB(grupoABB->izq) + edadPromedioTGrupoABB(grupoABB->der) + edadTVisitante(grupoABB->visitante)/cantidadVisitantesTGrupoABB(grupoABB));
     }
 }
 
