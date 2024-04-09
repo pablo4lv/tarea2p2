@@ -149,7 +149,7 @@ TVisitante Aplanar(TGrupoABB grupoABB, TGrupoABB grupo2){
 }
 
 TVisitante obtenerNesimoVisitanteTGrupoABB(TGrupoABB grupoABB, int n){
-    TGrupoABB grupo2 = NULL;
+    // TGrupoABB grupo2 = NULL;
     return NULL;
 }
 
