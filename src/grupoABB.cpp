@@ -85,6 +85,7 @@ void removerTVisitanteTGrupoABB(TGrupoABB &grupoABB, int idVisitante){
             while (maxIzq->der != NULL) {maxIzq = maxIzq->der;}
             grupoABB->visitante = maxIzq->visitante;
             removerTVisitanteTGrupoABB(grupoABB->izq, idTVisitante(maxIzq->visitante));
+            delete maxIzq;
         }
     }
 }
