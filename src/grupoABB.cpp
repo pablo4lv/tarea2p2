@@ -19,6 +19,7 @@ void insertarTVisitanteTGrupoABB(TGrupoABB &grupoABB, TVisitante visitante){
         nuevo->visitante = visitante;
         nuevo->izq = NULL;
         nuevo->der = NULL;
+        grupoABB = nuevo;
     } else {
         if (idTVisitante(visitante) < idTVisitante(grupoABB->visitante)){
             insertarTVisitanteTGrupoABB(grupoABB->izq,visitante);
