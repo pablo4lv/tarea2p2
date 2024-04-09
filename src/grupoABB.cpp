@@ -83,13 +83,18 @@ int cantidadVisitantesTGrupoABB(TGrupoABB grupoABB){
     }
 }
 
-float edadPromedioTGrupoABB(TGrupoABB grupoABB) {
-    int aux = cantidadVisitantesTGrupoABB(grupoABB);
+//
+int sumaEdades(TGrupoABB grupoABB){
     if (grupoABB == NULL){
         return 0;
     } else {
-        return (edadPromedioTGrupoABB(grupoABB->izq) + edadPromedioTGrupoABB(grupoABB->der) + edadTVisitante(grupoABB->visitante)/aux);
+        return (sumaEdades(grupoABB->izq) + sumaEdades(grupoABB->der) + edadTVisitante(grupoABB->visitante));
     }
+}
+//
+
+float edadPromedioTGrupoABB(TGrupoABB grupoABB) {
+    sumaEdades(grupoABB)/cantidadVisitantesTGrupoABB(grupoABB);
 }
 
 void liberarNodo(TGrupoABB &grupoABB){
