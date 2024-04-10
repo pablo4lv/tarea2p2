@@ -190,7 +190,9 @@ TVisitante obtenerNesimoVisitanteTGrupoABB(TGrupoABB grupoABB, int n){
         plano = plano->der;
         i++;
     }
-    return plano->visitante;
+    int ID = idTVisitante(plano->visitante);
+    liberarTGrupoABB(plano);
+    return obtenerTVisitanteTGrupoABB(grupoABB,ID);
     
     // int k = 0;
     // return contar(grupoABB,n,k)->visitante;
