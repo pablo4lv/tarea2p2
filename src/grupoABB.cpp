@@ -150,47 +150,48 @@ TVisitante maxIdTVisitanteTGrupoABB(TGrupoABB grupoABB){
     return grupoABB->visitante;
 }
 
-// //
-// TGrupoABB Aplanar(TGrupoABB grupoABB, TGrupoABB &grupo2){
-//     if (grupoABB != NULL){
-//         if (grupoABB->izq == NULL && grupoABB->der == NULL){
-//             insertarTVisitanteTGrupoABB(grupo2,copiarTVisitante(grupoABB->visitante));
-//         }else{
-//             Aplanar(grupoABB->izq,grupo2);
-//             insertarTVisitanteTGrupoABB(grupo2,copiarTVisitante(grupoABB->visitante));
-//             Aplanar(grupoABB->der,grupo2);
-//         }
-//     }
-//     return grupo2;
-// }
-
-TGrupoABB contar(TGrupoABB grupoABB, int n, int &k){
+//
+TGrupoABB Aplanar(TGrupoABB grupoABB, TGrupoABB &grupo2){
     if (grupoABB != NULL){
-        TGrupoABB izq = contar(grupoABB->izq, n, k);
-        k++;
-        if (k == n){
-            return grupoABB;
-        } else {
-            TGrupoABB der = contar(grupoABB->der, n, k);
-            if(der != NULL){
-                return der;
-            }
+        if (grupoABB->izq == NULL && grupoABB->der == NULL){
+            insertarTVisitanteTGrupoABB(grupo2,copiarTVisitante(grupoABB->visitante));
+        }else{
+            Aplanar(grupoABB->izq,grupo2);
+            insertarTVisitanteTGrupoABB(grupo2,copiarTVisitante(grupoABB->visitante));
+            Aplanar(grupoABB->der,grupo2);
         }
-    }else {
-        return NULL;
     }
+    return grupo2;
 }
+
+// TGrupoABB contar(TGrupoABB grupoABB, int n, int &k){
+//     if (grupoABB != NULL){
+//         TGrupoABB izq = contar(grupoABB->izq, n, k);
+//         k++;
+//         if (k == n){
+//             return grupoABB;
+//         } else {
+//             TGrupoABB der = contar(grupoABB->der, n, k);
+//             if(der != NULL){
+//                 return der;
+//             }
+//         }
+//     }else {
+//         return NULL;
+//     }
+// }
 
 
 TVisitante obtenerNesimoVisitanteTGrupoABB(TGrupoABB grupoABB, int n){
-    // TGrupoABB plano = NULL;
-    // Aplanar(grupoABB,plano);
-    // int i = 1;
-    // while (i < n){
-    //     plano = plano->der;
-    //     i++;
-    // }
-    // return plano->visitante;
-    int k = 0;
-    return contar(grupoABB,n,k)->visitante;
+    TGrupoABB plano = NULL;
+    Aplanar(grupoABB,plano);
+    int i = 1;
+    while (i < n){
+        plano = plano->der;
+        i++;
+    }
+    return plano->visitante;
+    
+    // int k = 0;
+    // return contar(grupoABB,n,k)->visitante;
 }
