@@ -108,7 +108,7 @@ int cantidadVisitantesTGrupoABB(TGrupoABB grupoABB){
 }
 
 //aux
-int sumaEdades(TGrupoABB grupoABB){
+float sumaEdades(TGrupoABB grupoABB){
     if (grupoABB == NULL){
         return 0;
     } else {
