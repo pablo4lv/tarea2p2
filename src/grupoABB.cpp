@@ -150,19 +150,19 @@ TVisitante maxIdTVisitanteTGrupoABB(TGrupoABB grupoABB){
     return grupoABB->visitante;
 }
 
-//
-TGrupoABB Aplanar(TGrupoABB grupoABB, TGrupoABB &grupo2){
-    if (grupoABB != NULL){
-        if (grupoABB->izq == NULL && grupoABB->der == NULL){
-            insertarTVisitanteTGrupoABB(grupo2,copiarTVisitante(grupoABB->visitante));
-        }else{
-            Aplanar(grupoABB->izq,grupo2);
-            insertarTVisitanteTGrupoABB(grupo2,copiarTVisitante(grupoABB->visitante));
-            Aplanar(grupoABB->der,grupo2);
-        }
-    }
-    return grupo2;
-}
+// memoria colgada
+// TGrupoABB Aplanar(TGrupoABB grupoABB, TGrupoABB &grupo2){
+//     if (grupoABB != NULL){
+//         if (grupoABB->izq == NULL && grupoABB->der == NULL){
+//             insertarTVisitanteTGrupoABB(grupo2,copiarTVisitante(grupoABB->visitante));
+//         }else{
+//             Aplanar(grupoABB->izq,grupo2);
+//             insertarTVisitanteTGrupoABB(grupo2,copiarTVisitante(grupoABB->visitante));
+//             Aplanar(grupoABB->der,grupo2);
+//         }
+//     }
+//     return grupo2;
+// }
 
 // TGrupoABB contar(TGrupoABB grupoABB, int n, int &k){
 //     if (grupoABB != NULL){
@@ -182,18 +182,29 @@ TGrupoABB Aplanar(TGrupoABB grupoABB, TGrupoABB &grupo2){
 // }
 
 
-TVisitante obtenerNesimoVisitanteTGrupoABB(TGrupoABB grupoABB, int n){
-    TGrupoABB plano = NULL;
-    Aplanar(grupoABB,plano);
-    int i = 1;
-    while (i < n){
-        plano = plano->der;
-        i++;
-    }
-    int ID = idTVisitante(plano->visitante);
-    liberarTGrupoABB(plano);
-    return obtenerTVisitanteTGrupoABB(grupoABB,ID);
+// TVisitante obtenerNesimoVisitanteTGrupoABB(TGrupoABB grupoABB, int n){
+//     TGrupoABB plano = NULL;
+//     Aplanar(grupoABB,plano);
+//     int i = 1;
+//     while (i < n){
+//         plano = plano->der;
+//         i++;
+//     }
+//     return plano->visitante;
     
-    // int k = 0;
-    // return contar(grupoABB,n,k)->visitante;
+//     // int k = 0;
+//     // return contar(grupoABB,n,k)->visitante;
+// }
+
+TVisitante obtenerNesimoVisitanteTGrupoABB(TGrupoABB grupoABB, int n){
+    TVisitante res;
+    int cantidad = cantidadVisitantesTGrupoABB(grupoABB->izq);
+    if (cantidad == n - 1){
+        res = grupoABB->visitante;
+    } else if (cantidad < n - 1){
+        res = obtenerNesimoVisitanteTGrupoABB(grupoABB->der, n - cantidad - 1);
+    } else {
+        res = obtenerNesimoVisitanteTGrupoABB(grupoABB->izq, n);
+    }
+    return res;
 }
