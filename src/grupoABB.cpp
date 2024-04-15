@@ -119,7 +119,7 @@ float sumaEdades(TGrupoABB grupoABB){
 
 float edadPromedioTGrupoABB(TGrupoABB grupoABB) {
     if (grupoABB != NULL){
-        return sumaEdades(grupoABB)/cantidadVisitantesTGrupoABB(grupoABB);
+        return sumaEdades(grupoABB)/float(cantidadVisitantesTGrupoABB(grupoABB));
     }else {
         return 0;
     }
