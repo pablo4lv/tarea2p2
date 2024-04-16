@@ -1,15 +1,31 @@
 #include "../include/coleccionTGrupos.h"
 
 struct rep_coleccionTGrupos {
+	nodo* primero;
+	nodo* ultimo;
+};
 
+struct nodo{
+	TGrupoABB grupo;
+	nodo* sig;
+	nodo* ant;
 };
 
 TColeccionTGrupos crearTColeccionTGruposVacia(){
-	return NULL;
+	TColeccionTGrupos vacia = new rep_coleccionTGrupos;
+	vacia->primero = NULL;
+	vacia->ultimo = NULL;
+	return vacia;
 }
 
 void insertarGrupoTColeccionTGrupos(TColeccionTGrupos coleccion, TGrupoABB grupo){
-	
+	if (coleccion->primero == NULL){
+		coleccion->primero = new nodo;
+		coleccion->primero->grupo = grupo;
+		coleccion->ultimo = coleccion->primero;
+	}else{
+		
+	}
 }
 
 void imprimirTColeccionTGrupos(TColeccionTGrupos coleccion){
