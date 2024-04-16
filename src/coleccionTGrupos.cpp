@@ -36,7 +36,7 @@ void insertarGrupoTColeccionTGrupos(TColeccionTGrupos coleccion, TGrupoABB grupo
 			coleccion->primero->ant = nuevo;
 			nuevo->sig = coleccion->primero;
 			coleccion->primero = nuevo;
-		} else if (coleccion->primero = NULL){
+		} else if (coleccion->primero == NULL){
 			//CASO: insertar al final
 			coleccion->ultimo->sig = nuevo;
 			nuevo->ant = coleccion->ultimo;
