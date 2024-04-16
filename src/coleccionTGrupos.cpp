@@ -105,14 +105,14 @@ nat cantidadTGruposColeccionTGrupos(TColeccionTGrupos coleccion){
 TGrupoABB obtenerNesimoColeccionTGrupos(TColeccionTGrupos coleccion, int n){
 	nodo* actual = coleccion->primero;
 	int i = 1;
-	while (actual != NULL && i<n){
+	while (actual != NULL && i < n){
 		actual = actual->sig;
 		i++;
 	}
-	if (i>n){
-		return NULL;
-	} else {
+	if (i == n && actual != NULL){
 		return actual->grupo;
+	} else {
+		return NULL;
 	}
 }
 
