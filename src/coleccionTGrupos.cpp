@@ -23,6 +23,7 @@ void insertarGrupoTColeccionTGrupos(TColeccionTGrupos coleccion, TGrupoABB grupo
 	nuevo->grupo = grupo;
 	nuevo->sig = NULL;
 
+	//Insertar en col vacía
 	if (coleccion->primero == NULL){
 		coleccion->primero = nuevo;
 		coleccion->ultimo = nuevo;
@@ -80,7 +81,13 @@ TGrupoABB removerNesimoColeccionTGrupos(TColeccionTGrupos coleccion, int n){
 }
 
 void liberarTColeccionTGrupos(TColeccionTGrupos &coleccion){
-	
+	nodo* aux;
+	while (coleccion->primero != NULL){
+		aux = coleccion->primero;
+		coleccion->primero = coleccion->primero->sig;
+		liberarTGrupoABB(aux->grupo);
+		delete aux;
+	}
 }
 
 TGrupoABB obtenerVisitantesRepetidos(TColeccionTGrupos coleccion){
