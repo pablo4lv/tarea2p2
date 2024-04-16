@@ -136,7 +136,23 @@ TGrupoABB removerUltimoColeccionTGrupos(TColeccionTGrupos coleccion){
 }
 
 TGrupoABB removerNesimoColeccionTGrupos(TColeccionTGrupos coleccion, int n){
-	return NULL;
+	TGrupoABB borrado;
+	//Si el elem es el primero o el ultimo
+	if (n == 1 || cantidadTGruposColeccionTGrupos(coleccion)){
+		removerUltimoColeccionTGrupos(coleccion);
+	} else {
+		//Si no, esta entre dos elems
+		nodo* aux = coleccion->primero;
+		while(n > 1){
+			n--;
+			aux = aux->sig;
+		}
+		borrado = aux->grupo;
+		aux->sig->ant = aux->ant;
+		aux->ant->sig = aux->sig;
+		delete aux;
+	}
+	return borrado;
 }
 
 void liberarTColeccionTGrupos(TColeccionTGrupos &coleccion){
