@@ -33,16 +33,17 @@ void insertarGrupoTColeccionTGrupos(TColeccionTGrupos coleccion, TGrupoABB grupo
 		while (actual != NULL && edadPromedioTGrupoABB(actual->grupo) <= edadPromedioTGrupoABB(grupo)){
 			actual = actual->sig;
 		}
-		//CASO: insertar al inicio
-		if (actual->ant == NULL){
-			nuevo->sig = actual;
-			actual->ant = nuevo;
-			coleccion->primero = nuevo;
-		} else if (actual == NULL){
-			//CASO: insertar al final
+
+		//CASO: insertar al final
+		if (actual == NULL){
 			coleccion->ultimo->sig = nuevo;
 			nuevo->ant = coleccion->ultimo;
 			coleccion->ultimo = nuevo;
+		} else if (actual->ant == NULL){
+			//CASO: insertar al inicio
+			nuevo->sig = actual;
+			actual->ant = nuevo;
+			coleccion->primero = nuevo;
 		}else {
 			//CASO: insertar entre dos elementos
 			nuevo->sig = actual;
@@ -50,6 +51,24 @@ void insertarGrupoTColeccionTGrupos(TColeccionTGrupos coleccion, TGrupoABB grupo
 			actual->ant->sig = nuevo;
 			actual->ant = nuevo;
 		}
+
+		// //CASO: insertar al inicio
+		// if (actual->ant == NULL){
+		// 	nuevo->sig = actual;
+		// 	actual->ant = nuevo;
+		// 	coleccion->primero = nuevo;
+		// } else if (actual == NULL){
+		// 	//CASO: insertar al final
+		// 	coleccion->ultimo->sig = nuevo;
+		// 	nuevo->ant = coleccion->ultimo;
+		// 	coleccion->ultimo = nuevo;
+		// }else {
+		// 	//CASO: insertar entre dos elementos
+		// 	nuevo->sig = actual;
+		// 	nuevo->ant = actual->ant;
+		// 	actual->ant->sig = nuevo;
+		// 	actual->ant = nuevo;
+		// }
 	}
 }
 
