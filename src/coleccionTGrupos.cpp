@@ -74,8 +74,8 @@ void insertarGrupoTColeccionTGrupos(TColeccionTGrupos coleccion, TGrupoABB grupo
 
 void imprimirTColeccionTGrupos(TColeccionTGrupos coleccion){
 	nodo* actual = coleccion->primero;
+	printf("Coleccion de grupos:\n");
 	while (actual != NULL){
-		printf("Coleccion de grupos:\n");
 		printf("Grupo con la edad promedio %.2f\n", edadPromedioTGrupoABB(actual->grupo));
 		imprimirTGrupoABB(actual->grupo);
 		actual = actual->sig;
