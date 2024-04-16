@@ -93,15 +93,31 @@ void imprimirInvertidoTColeccionTGrupos(TColeccionTGrupos coleccion){
 }
 
 nat cantidadTGruposColeccionTGrupos(TColeccionTGrupos coleccion){
-	return 0;
+	nat cant = 0;
+	nodo* aux = coleccion->primero;
+	while (aux != NULL){
+		cant++;
+		aux = aux->sig;
+	}
+	return cant;
 }
 
 TGrupoABB obtenerNesimoColeccionTGrupos(TColeccionTGrupos coleccion, int n){
-	return NULL;
+	nodo* actual = coleccion->primero;
+	int i = 1;
+	while (actual != NULL && i<n){
+		actual = actual->sig;
+		i++;
+	}
+	if (i>n){
+		return actual->grupo;
+	} else {
+		return NULL;
+	}
 }
 
 TGrupoABB obtenerPrimeroColeccionTGrupos(TColeccionTGrupos coleccion){
-	return NULL;
+	return coleccion->primero->grupo;
 }
 
 TGrupoABB removerUltimoColeccionTGrupos(TColeccionTGrupos coleccion){
