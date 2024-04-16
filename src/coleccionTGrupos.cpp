@@ -19,12 +19,35 @@ TColeccionTGrupos crearTColeccionTGruposVacia(){
 }
 
 void insertarGrupoTColeccionTGrupos(TColeccionTGrupos coleccion, TGrupoABB grupo){
-	if (coleccion->primero == NULL){
-		coleccion->primero = new nodo;
-		coleccion->primero->grupo = grupo;
-		coleccion->ultimo = coleccion->primero;
-	}else{
+	nodo* nuevo = new nodo;
+	nuevo->grupo = grupo;
+	nuevo->sig = NULL;
 
+	if (coleccion->primero == NULL){
+		coleccion->primero = nuevo;
+		coleccion->ultimo = nuevo;
+		nuevo->ant = NULL;
+	}else{
+		while (edadPromedioTGrupoABB(coleccion->primero->grupo) <= edadPromedioTGrupoABB(grupo)){
+			coleccion->primero = coleccion->primero->sig;
+		}
+		//CASO: insertar al inicio
+		if (coleccion->primero->ant == NULL){
+			coleccion->primero->ant = nuevo;
+			nuevo->sig = coleccion->primero;
+			coleccion->primero = nuevo;
+		} else if (coleccion->primero = NULL){
+			//CASO: insertar al final
+			coleccion->ultimo->sig = nuevo;
+			nuevo->ant = coleccion->ultimo;
+			coleccion->ultimo = nuevo;
+		}else {
+			//CASO: insertar entre dos elementos
+			coleccion->primero->ant->sig = nuevo;
+			nuevo->ant = coleccion->primero->ant;
+			coleccion->primero->ant = nuevo;
+			nuevo->sig = coleccion->primero;
+		}
 	}
 }
 
