@@ -76,7 +76,7 @@ void imprimirTColeccionTGrupos(TColeccionTGrupos coleccion){
 	nodo* actual = coleccion->primero;
 	printf("Coleccion de grupos:\n");
 	while (actual != NULL){
-		printf("Grupo con edad promedio %.2f\n", edadPromedioTGrupoABB(actual->grupo));
+		printf("Grupo con edad promedio %.2f:\n", edadPromedioTGrupoABB(actual->grupo));
 		imprimirTGrupoABB(actual->grupo);
 		actual = actual->sig;
 	}
@@ -84,9 +84,9 @@ void imprimirTColeccionTGrupos(TColeccionTGrupos coleccion){
 
 void imprimirInvertidoTColeccionTGrupos(TColeccionTGrupos coleccion){
 	nodo* actual = coleccion->ultimo;
+	printf("Coleccion de grupos:\n");
 	while (actual != NULL){
-		printf("Coleccion de grupos:\n");
-		printf("Grupo con edad promedio %.2f\n", edadPromedioTGrupoABB(actual->grupo));
+		printf("Grupo con edad promedio %.2f:\n", edadPromedioTGrupoABB(actual->grupo));
 		imprimirTGrupoABB(actual->grupo);
 		actual = actual->ant;
 	}
