@@ -28,26 +28,27 @@ void insertarGrupoTColeccionTGrupos(TColeccionTGrupos coleccion, TGrupoABB grupo
 		coleccion->primero = nuevo;
 		coleccion->ultimo = nuevo;
 		nuevo->ant = NULL;
-	}else{
-		while (edadPromedioTGrupoABB(coleccion->primero->grupo) <= edadPromedioTGrupoABB(grupo)){
-			coleccion->primero = coleccion->primero->sig;
+	} else {
+		nodo* actual = coleccion->primero;
+		while (actual != NULL && edadPromedioTGrupoABB(actual->grupo) <= edadPromedioTGrupoABB(grupo)){
+			actual = actual->sig;
 		}
 		//CASO: insertar al inicio
-		if (coleccion->primero->ant == NULL){
-			coleccion->primero->ant = nuevo;
-			nuevo->sig = coleccion->primero;
+		if (actual->ant == NULL){
+			nuevo->sig = actual;
+			actual->ant = nuevo;
 			coleccion->primero = nuevo;
-		} else if (coleccion->primero == NULL){
+		} else if (actual == NULL){
 			//CASO: insertar al final
 			coleccion->ultimo->sig = nuevo;
 			nuevo->ant = coleccion->ultimo;
 			coleccion->ultimo = nuevo;
 		}else {
 			//CASO: insertar entre dos elementos
-			coleccion->primero->ant->sig = nuevo;
-			nuevo->ant = coleccion->primero->ant;
-			coleccion->primero->ant = nuevo;
-			nuevo->sig = coleccion->primero;
+			nuevo->sig = actual;
+			nuevo->ant = actual->ant;
+			actual->ant->sig = nuevo;
+			actual->ant = nuevo;
 		}
 	}
 }
