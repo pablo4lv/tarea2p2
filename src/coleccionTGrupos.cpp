@@ -136,21 +136,49 @@ TGrupoABB removerUltimoColeccionTGrupos(TColeccionTGrupos coleccion){
 }
 
 TGrupoABB removerNesimoColeccionTGrupos(TColeccionTGrupos coleccion, int n){
+
+	// //Si el elem es el primero o el ultimo
+	// if (n == 1){
+	// 	nodo* aux = coleccion->primero;
+	// 	borrado = coleccion->primero->grupo;
+
+	// } else if (nat(n) == cantidadTGruposColeccionTGrupos(coleccion)){
+	// 	borrado = removerUltimoColeccionTGrupos(coleccion);
+	// } else {
+	// 	//Si no, esta entre dos elems
+	// 	nodo* aux = coleccion->primero;
+	// 	while(n > 1){
+	// 		n--;
+	// 		aux = aux->sig;
+	// 	}
+	// 	borrado = aux->grupo;
+	// 	aux->sig->ant = aux->ant;
+	// 	aux->ant->sig = aux->sig;
+	// 	delete aux;
+	// }
+
 	TGrupoABB borrado;
-	//Si el elem es el primero o el ultimo
-	if (n == 1 || nat(n) == cantidadTGruposColeccionTGrupos(coleccion)){
+	//es el ultimo
+	if (nat(n) == cantidadTGruposColeccionTGrupos(coleccion)){
 		borrado = removerUltimoColeccionTGrupos(coleccion);
 	} else {
-		//Si no, esta entre dos elems
 		nodo* aux = coleccion->primero;
-		while(n > 1){
-			n--;
-			aux = aux->sig;
+		if (n == 1){
+			//es el primero
+			borrado = aux->grupo;
+			coleccion->primero = aux->sig;
+			coleccion->primero->ant = NULL;
+			delete aux;
+		} else {
+			while(n > 1){
+				n--;
+				aux = aux->sig;
+			}
+			borrado = aux->grupo;
+			aux->sig->ant = aux->ant;
+			aux->ant->sig = aux->sig;
+			delete aux;
 		}
-		borrado = aux->grupo;
-		aux->sig->ant = aux->ant;
-		aux->ant->sig = aux->sig;
-		delete aux;
 	}
 	return borrado;
 }
