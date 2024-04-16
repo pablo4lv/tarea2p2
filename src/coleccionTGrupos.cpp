@@ -108,6 +108,7 @@ void liberarTColeccionTGrupos(TColeccionTGrupos &coleccion){
 		liberarTGrupoABB(aux->grupo);
 		delete aux;
 	}
+	delete coleccion;
 }
 
 TGrupoABB obtenerVisitantesRepetidos(TColeccionTGrupos coleccion){
