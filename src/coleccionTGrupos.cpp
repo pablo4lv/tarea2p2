@@ -121,7 +121,18 @@ TGrupoABB obtenerPrimeroColeccionTGrupos(TColeccionTGrupos coleccion){
 }
 
 TGrupoABB removerUltimoColeccionTGrupos(TColeccionTGrupos coleccion){
-	return NULL;
+	TGrupoABB ultimo = coleccion->ultimo->grupo;
+	if (coleccion->primero == coleccion->ultimo){
+		delete coleccion->ultimo;
+		coleccion->primero = NULL;
+		coleccion->ultimo = NULL;
+	} else {
+		nodo* aux = coleccion->ultimo;
+		coleccion->ultimo = coleccion->ultimo->ant;
+		coleccion->ultimo->sig = NULL;
+		delete aux;
+	}
+	return ultimo;
 }
 
 TGrupoABB removerNesimoColeccionTGrupos(TColeccionTGrupos coleccion, int n){
