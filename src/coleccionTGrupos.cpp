@@ -138,8 +138,8 @@ TGrupoABB removerUltimoColeccionTGrupos(TColeccionTGrupos coleccion){
 TGrupoABB removerNesimoColeccionTGrupos(TColeccionTGrupos coleccion, int n){
 	TGrupoABB borrado;
 	//Si el elem es el primero o el ultimo
-	if (n == 1 || cantidadTGruposColeccionTGrupos(coleccion)){
-		removerUltimoColeccionTGrupos(coleccion);
+	if (n == 1 || n == cantidadTGruposColeccionTGrupos(coleccion)){
+		borrado = removerUltimoColeccionTGrupos(coleccion);
 	} else {
 		//Si no, esta entre dos elems
 		nodo* aux = coleccion->primero;
