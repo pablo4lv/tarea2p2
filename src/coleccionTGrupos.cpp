@@ -110,9 +110,9 @@ TGrupoABB obtenerNesimoColeccionTGrupos(TColeccionTGrupos coleccion, int n){
 		i++;
 	}
 	if (i>n){
-		return actual->grupo;
-	} else {
 		return NULL;
+	} else {
+		return actual->grupo;
 	}
 }
 
