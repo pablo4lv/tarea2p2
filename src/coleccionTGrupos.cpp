@@ -107,6 +107,7 @@ void liberarTColeccionTGrupos(TColeccionTGrupos &coleccion){
 		coleccion->primero = coleccion->primero->sig;
 		liberarTGrupoABB(aux->grupo);
 		delete aux;
+		aux = NULL;
 	}
 	delete coleccion;
 	coleccion = NULL;
