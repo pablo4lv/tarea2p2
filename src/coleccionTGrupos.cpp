@@ -1,15 +1,15 @@
 #include "../include/coleccionTGrupos.h"
 
-struct rep_coleccionTGrupos {
-	nodo* primero;
-	nodo* ultimo;
-};
-
 struct nodo{
 	TGrupoABB grupo;
 	nodo* sig;
 	nodo* ant;
 };
+struct rep_coleccionTGrupos {
+	nodo* primero;
+	nodo* ultimo;
+};
+
 
 TColeccionTGrupos crearTColeccionTGruposVacia(){
 	TColeccionTGrupos vacia = new rep_coleccionTGrupos;
@@ -24,7 +24,7 @@ void insertarGrupoTColeccionTGrupos(TColeccionTGrupos coleccion, TGrupoABB grupo
 		coleccion->primero->grupo = grupo;
 		coleccion->ultimo = coleccion->primero;
 	}else{
-		
+
 	}
 }
 
