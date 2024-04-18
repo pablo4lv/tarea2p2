@@ -210,7 +210,7 @@ TGrupoABB obtenerVisitantesRepetidos(TColeccionTGrupos coleccion){
 				TVisitante visitante = obtenerNesimoVisitanteTGrupoABB(actual->grupo,i);
 				while (siguiente != NULL){
 					//Si esta en el sig grupo
-					if (existeTVisitanteTGrupoABB(siguiente->grupo,idTVisitante(visitante))){
+					if (existeTVisitanteTGrupoABB(siguiente->grupo,idTVisitante(visitante)) && !(existeTVisitanteTGrupoABB(res, idTVisitante(visitante)))){
 						//Copio y guardo en el grupo nuevo
 						insertarTVisitanteTGrupoABB(res, copiarTVisitante(visitante));
 						break;
