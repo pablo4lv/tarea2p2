@@ -42,6 +42,7 @@ void insertarGrupoTColeccionTGrupos(TColeccionTGrupos coleccion, TGrupoABB grupo
 		} else if (actual->ant == NULL){
 			//CASO: insertar al inicio
 			nuevo->sig = actual;
+			nuevo->ant = NULL;
 			actual->ant = nuevo;
 			coleccion->primero = nuevo;
 		}else {
