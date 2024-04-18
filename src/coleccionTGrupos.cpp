@@ -87,12 +87,10 @@ void imprimirInvertidoTColeccionTGrupos(TColeccionTGrupos coleccion){
 	nodo* actual = coleccion->ultimo;
 	printf("Coleccion de grupos:\n");
 	while (actual != NULL){
-		if (actual->grupo != NULL){
-			printf("Grupo con edad promedio %.2f:\n", edadPromedioTGrupoABB(actual->grupo));
-			imprimirTGrupoABB(actual->grupo);
-			actual = actual->ant;
-		}
-	}
+		printf("Grupo con edad promedio %.2f:\n", edadPromedioTGrupoABB(actual->grupo));
+		imprimirTGrupoABB(actual->grupo);
+		actual = actual->ant;
+}
 }
 
 nat cantidadTGruposColeccionTGrupos(TColeccionTGrupos coleccion){
