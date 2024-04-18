@@ -102,6 +102,7 @@ CASOS = pieza1-crear-liberar \
 		grupoABB5-cantidad-edadPromedio \
 		grupoABB6-obtenerNesimo \
 		grupoABB7-combinado \
+		grupoABB8-tiempo \
 		coleccionTGrupos1-crear-insertar-liberar \
 		coleccionTGrupos2-imprimir \
 		coleccionTGrupos3-cantidad-primero-enesimo \
@@ -119,14 +120,14 @@ $(SALS):$(EJECUTABLE)
 # el guión antes del comando es para que si hay error no se detenga la
 # ejecución de los otros casos
 $(SALIDADIR)/%.sal:$(INDIR)/%.in
-	-timeout 4 valgrind -q --leak-check=full ./$(EJECUTABLE) < $< > $@ 2>&1
+	-timeout 20 valgrind -q --leak-check=full ./$(EJECUTABLE) < $< > $@ 2>&1
 	@if [ $$(stat -L -c %s $@) -ge 20000 ]; then \
 		echo "tamaño excedido" > $@;\
 	fi
 
 # test de tiempo
 $(SALIDADIR)/t-%.sal:$(INDIR)/t-%.in
-	-timeout 10 ./$(EJECUTABLE) < $< > $@ 2>&1
+	-timeout 20 ./$(EJECUTABLE) < $< > $@ 2>&1
 
 %.diff:Makefile
 # cada .diff depende de su .out y de su .sal
@@ -148,7 +149,7 @@ $(tS):$(EJECUTABLE)
 # hace el diff entre el -out (el segundo prerequisito, echo $(word 2,$^)) y el archivo temporal
 # borra el archivo temporal
 t-%:$(INDIR)/%.in $(OUTDIR)/%.out
-	@timeout 4 valgrind -q --leak-check=full ./$(EJECUTABLE) < $< > $@tmp 2>&1;  \
+	@timeout 20 valgrind -q --leak-check=full ./$(EJECUTABLE) < $< > $@tmp 2>&1;  \
 	diff `echo $(word 2,$^)` $@tmp ; \
 	if [ $$? -eq 0 ];                                         \
 	then                                                      \

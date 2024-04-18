@@ -88,6 +88,8 @@ void main_cantidadVisitantesGrupoABB(TGrupoABB grupo);
 void main_edadPromedioGrupoABB(TGrupoABB grupo);
 void main_removerDeGrupoABB(TGrupoABB &grupo);
 void main_obtenerNesimoVisitanteTGrupoABB(TGrupoABB grupo);
+void main_alturaGrupoABBTiempo();
+void main_obtenerExisteVisitanteGrupoABBTiempo();
 
 //////////////////////////////////////////
 // Funciones main para ColeccionTGrupos //
@@ -232,7 +234,11 @@ int main() {
             main_liberarGrupoABB(grupo);
         } else if (cmd_es("obtenerNesimoVisitanteGrupoABB", cmd)) { 
             main_obtenerNesimoVisitanteTGrupoABB(grupo);
-      
+        } else if (cmd_es("alturaGrupoABBTiempo", cmd)) { 
+            main_alturaGrupoABBTiempo();
+        } else if (cmd_es("obtenerExisteVisitanteGrupoABBTiempo", cmd)) { 
+            main_obtenerExisteVisitanteGrupoABBTiempo();
+
             //////////////////////////////////////////////
             // Funciones para testear ColeccionTGrupos  //
             //////////////////////////////////////////////
@@ -558,6 +564,80 @@ void main_obtenerNesimoVisitanteTGrupoABB(TGrupoABB grupo){
     }
 }
 
+void insertarEnArbolDesdeArreglo(TGrupoABB &grupoABB, TVisitante *arreglo, int inicio, int final){
+    if (inicio <= final){
+        int mid = (inicio + final) / 2;
+        insertarTVisitanteTGrupoABB(grupoABB, arreglo[mid]);
+        insertarEnArbolDesdeArreglo(grupoABB, arreglo, inicio, mid - 1);
+        insertarEnArbolDesdeArreglo(grupoABB, arreglo, mid + 1, final);
+    }
+}
+
+void main_alturaGrupoABBTiempo(){
+    TGrupoABB grupoABB = crearTGrupoABBVacio();
+
+    nat tamanio = leerNat();
+    nat timeout = leerNat();
+
+    TVisitante *arreglo = new TVisitante[tamanio];
+    for (nat i = 0; i < tamanio; i++) {
+        arreglo[i] = crearTVisitante(i, "Alberto", "Pardo", 52);
+    }
+
+    nat inicio = 0;
+    nat final = tamanio - 1;
+    insertarEnArbolDesdeArreglo(grupoABB, arreglo, inicio, final);
+    clock_t tm = clock();
+    nat altura = alturaTGrupoABB(grupoABB);
+    tm = clock() - tm;
+
+    float tiempo = ((float)tm) / CLOCKS_PER_SEC;
+    if (tiempo > timeout){
+        printf("ERROR, tiempo excedido; %.1f > %d \n", tiempo, timeout);
+    }else{
+        printf("La altura del grupo es %d. Calculado correctamente en menos de %ds.\n", altura, timeout);    
+    }
+    
+    liberarTGrupoABB(grupoABB);
+    delete[] arreglo;
+}
+
+void main_obtenerExisteVisitanteGrupoABBTiempo(){
+    TGrupoABB grupoABB = crearTGrupoABBVacio();
+
+    nat tamanio = leerNat();
+    double timeout = leerDouble();
+
+    TVisitante *arreglo = new TVisitante[tamanio];
+    for (nat i = 0; i < tamanio; i++) {
+        arreglo[i] = crearTVisitante(i, "Carlos", "Luna", 45);
+    }
+
+    nat inicio = 0;
+    nat final = tamanio - 1;
+    insertarEnArbolDesdeArreglo(grupoABB, arreglo, inicio, final);
+    clock_t tm = clock();
+    bool existeVisitante1 = existeTVisitanteTGrupoABB(grupoABB, 0);
+    bool existeVisitante2 = existeTVisitanteTGrupoABB(grupoABB, tamanio - 1);
+    bool existeVisitante3 = existeTVisitanteTGrupoABB(grupoABB, tamanio / 3);
+    bool existeVisitante4 = existeTVisitanteTGrupoABB(grupoABB, (2 * tamanio) / 3);
+    TVisitante visitante1 = obtenerTVisitanteTGrupoABB(grupoABB, 0);
+    TVisitante visitante2 = obtenerTVisitanteTGrupoABB(grupoABB, tamanio - 1);
+    TVisitante visitante3 = obtenerTVisitanteTGrupoABB(grupoABB, tamanio / 3);
+    TVisitante visitante4 = obtenerTVisitanteTGrupoABB(grupoABB, (2 * tamanio) / 3);
+    tm = clock() - tm;
+
+    float tiempo = ((float)tm) / CLOCKS_PER_SEC;
+    if (tiempo > timeout){
+        printf("ERROR, tiempo excedido: %.3f > %.3f \n", tiempo, timeout);
+    }else{
+        printf("Se obtuvieron los visitantes? %d %d %d %d con ids respectivos %d %d %d %d\n", existeVisitante1, existeVisitante2, existeVisitante3, existeVisitante4, idTVisitante(visitante1), idTVisitante(visitante2), idTVisitante(visitante3), idTVisitante(visitante4));
+        printf("Calculado correctamente en menos de %.3fs.\n", timeout);    
+    }
+    
+    liberarTGrupoABB(grupoABB);
+    delete[] arreglo;
+}
 
 //////////////////////////////////////////
 // Funciones main para ColeccionTGrupos //

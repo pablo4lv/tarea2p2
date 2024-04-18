@@ -20,4 +20,5 @@ removerDeColeccionPiezas 24
 imprimirColeccionPiezas
 removerDeColeccionPiezas 12
 imprimirColeccionPiezas
+liberarColeccionPiezas
 Fin
