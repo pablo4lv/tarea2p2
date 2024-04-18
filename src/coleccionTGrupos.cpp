@@ -203,9 +203,10 @@ TGrupoABB obtenerVisitantesRepetidos(TColeccionTGrupos coleccion){
 		nodo* actual = coleccion->primero;
 
 		while (actual->sig != NULL){
-			nodo* siguiente = actual->sig;
+			nodo* siguiente;
 			int cantidad = cantidadVisitantesTGrupoABB(actual->grupo);
 			for (int i = 1; i <= cantidad; i++){
+				siguiente = actual->sig;
 				TVisitante visitante = obtenerNesimoVisitanteTGrupoABB(actual->grupo,i);
 				while (siguiente != NULL){
 					//Si esta en el sig grupo
@@ -226,5 +227,40 @@ TGrupoABB obtenerVisitantesRepetidos(TColeccionTGrupos coleccion){
 }
 
 TVisitante visitanteMasRepetido(TColeccionTGrupos coleccion){
-	return NULL;
+	TVisitante masrepetido;
+	int masveces = 0;
+
+	if (coleccion->primero != NULL){
+		nodo* actual = coleccion->primero;
+
+		while (actual->sig != NULL){
+			nodo* siguiente = actual->sig;
+
+			int cantidad = cantidadVisitantesTGrupoABB(actual->grupo);
+			for (int i = 1; i <= cantidad; i++){
+				TVisitante visitante = obtenerNesimoVisitanteTGrupoABB(actual->grupo,i);
+				int veces = 1;
+				while (siguiente != NULL){
+					//Si esta en el sig grupo
+					if (existeTVisitanteTGrupoABB(siguiente->grupo,idTVisitante(visitante))){
+						//sumo
+						veces++;
+					}
+					siguiente = siguiente->sig;
+				}
+				if((veces > masveces) || (veces == masveces && idTVisitante(visitante) < idTVisitante(masrepetido))){
+					masrepetido = visitante;
+					masveces = veces;
+				}
+			}
+			actual = actual->sig;
+		}
+		if(masveces > 0){
+			return masrepetido;
+		}else{
+			return NULL;
+		}		
+	} else {
+		return NULL;
+	}
 }
